@@ -10,7 +10,7 @@ function isLoggedIn() : bool {
 
 function getStudent()
 {
-    if(isset($_SESSION["student"]) && $_SESSION["student"]) {
+    if(isset($_SESSION["student"]) && $_SESSION["student"] && $_SESSION["id"] == $_SESSION["student"]["id"]) {
         return $_SESSION["student"];
     }
 
