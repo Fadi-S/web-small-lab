@@ -29,6 +29,12 @@ class RegisterController
                 "error" => "All fields required",
             ]);
         }
+        if(preg_match("/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/", $email) !== 1) {
+            return redirect("/register", 401)->setResponse([
+                "error" => "Invalid email",
+            ]);
+        }
+
 
         $password = password_hash($password, PASSWORD_BCRYPT);
 
