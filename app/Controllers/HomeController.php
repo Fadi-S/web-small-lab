@@ -16,8 +16,4 @@ class HomeController
             "title" => "Home",
         ]);
     }
-
-    public function about() {
-        return "About Us";
-    }
 }

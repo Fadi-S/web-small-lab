@@ -19,9 +19,9 @@ function getStudent()
     return $_SESSION["student"] = $model->execute("Select * from student where id=?", [$_SESSION["id"]])->fetch_array(MYSQLI_ASSOC);
 }
 
-function redirect($url) : Redirect
+function redirect($url, $status=200) : Redirect
 {
-    return Redirect::make($url);
+    return Redirect::make($url, $status);
 }
 
 function logout($url=null) {
@@ -50,4 +50,9 @@ function getErrors()
 function hasError()
 {
     return (bool) getErrors();
+}
+
+function clearResponse()
+{
+    unset($_SESSION["response"]);
 }

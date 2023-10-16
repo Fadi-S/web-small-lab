@@ -8,7 +8,9 @@ use App\View;
 class LoginController
 {
     public function show() {
-        return View::make("login");
+        return View::make("login", [
+            "title" => "Login",
+        ]);
     }
 
     public function logout() {
@@ -16,21 +18,26 @@ class LoginController
     }
 
     public function store() {
+        if(! isset($_POST["email"]) || ! isset($_POST["password"])) {
+            return redirect("/login", 401)->setResponse([
+                "error" => "Email and Password are required",
+            ]);
+        }
+
         $email = $_POST["email"];
         $password = $_POST["password"];
 
         $model = new Model;
-        $result = $model->execute("SELECT * from student where email=?", [$email])->fetch_array();
+        $user = $model->execute("SELECT * from student where email=?", [$email])->fetch_array();
 
-        if(!$result || ! isset($result[0])) {
-            return redirect("/login")->setResponse([
+        if(!$user || ! isset($user[0])) {
+            return redirect("/login", 401)->setResponse([
                 "error" => "Wrong Email or Password",
             ]);
         }
-        $user = $result;
 
         if(! password_verify($password, $user["password"])) {
-            return redirect("/login")->setResponse([
+            return redirect("/login", 401)->setResponse([
                 "error" => "Wrong Email or Password",
             ]);
         }

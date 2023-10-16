@@ -10,6 +10,19 @@ class Redirect
 
     public function handle()
     {
+        http_response_code($this->status);
+
+        $accepts = getallheaders()["Accept"] ?? "";
+        if ($accepts === "application/json") {
+            header("Content-Type: application/json");
+            echo json_encode(
+                array_merge($this->response ?? [], [
+                    "_redirect" => $this->url,
+                ])
+            );
+            die();
+        }
+
         header("Location: $this->url");
         $_SESSION["response"] = $this->response;
         die();
