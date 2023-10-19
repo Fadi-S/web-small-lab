@@ -33,9 +33,13 @@ function validateEmail(email) {
     return true;
 }
 
-function validatePassword(password, length=0) {
+function validatePassword(password, confirm_password, length=0) {
     if(password === null || password === "") {
         return "Password cannot be empty";
+    }
+
+    if(password !== confirm_password) {
+        return "Passwords do not match";
     }
 
     if(length && password.length < length) {

@@ -8,15 +8,15 @@ function isLoggedIn() : bool {
 }
 
 
-function getStudent()
+function getUser()
 {
-    if(isset($_SESSION["student"]) && $_SESSION["student"] && $_SESSION["id"] == $_SESSION["student"]["id"]) {
-        return $_SESSION["student"];
+    if(isset($_SESSION["user"]) && $_SESSION["user"] && $_SESSION["id"] == $_SESSION["user"]["id"]) {
+        return $_SESSION["user"];
     }
 
     $model = new Model();
 
-    return $_SESSION["student"] = $model->execute("Select * from student where id=?", [$_SESSION["id"]])->fetch_array(MYSQLI_ASSOC);
+    return $_SESSION["user"] = $model->execute("Select * from user where id=?", [$_SESSION["id"]])->fetch_array(MYSQLI_ASSOC);
 }
 
 function redirect($url, $status=200) : Redirect
@@ -27,7 +27,7 @@ function redirect($url, $status=200) : Redirect
 function logout($url=null) {
     unset($_SESSION["id"]);
 
-    unset($_SESSION["student"]);
+    unset($_SESSION["user"]);
 
     $url ??= "/login";
 

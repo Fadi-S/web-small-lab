@@ -39,18 +39,18 @@ class RegisterController
         $password = password_hash($password, PASSWORD_BCRYPT);
 
         $model = new Model();
-        $student = $model->execute("Select email from student where email=?", [$email])->fetch_column();
-        if($student) {
+        $user = $model->execute("Select email from user where email=?", [$email])->fetch_column();
+        if($user) {
             return redirect("/register", 401)->setResponse([
                 "error" => "Email already exists",
             ]);
         }
 
-        $model->execute("INSERT INTO student (name, email, password) VALUES (?,?,?)", [
+        $model->execute("INSERT INTO user (name, email, password) VALUES (?,?,?)", [
             $name, $email, $password,
         ]);
 
-        $_SESSION["id"] = $model->execute("Select id from student where email=?", [$email])->fetch_column();
+        $_SESSION["id"] = $model->execute("Select id from user where email=?", [$email])->fetch_column();
 
         return redirect("/");
     }

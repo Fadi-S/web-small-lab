@@ -18,6 +18,11 @@
                 <input id="password" name="password" type="password">
             </label>
 
+            <label class="label" style="margin-top: 10px;">
+                <span>Confirm Password</span>
+                <input id="confirm_password" name="confirm_password" type="password">
+            </label>
+
             <div id="error" class="error-card"><?= getErrors() ?></div>
 
             <button type="submit" style="margin-top: 20px;">
@@ -52,7 +57,8 @@
             }
 
             let password = document.getElementById("password").value;
-            let vPassword = validatePassword(password, 6);
+            let confirmPassword = document.getElementById("confirm_password").value;
+            let vPassword = validatePassword(password, confirmPassword, 6);
             if(vPassword !== true) {
                 addError(vPassword);
                 return;

@@ -2,11 +2,11 @@
 <div class="container">
     <div class="card" style="display: flex; flex-direction: column;">
         <div>
-            Welcome, <?= $student["name"] ?>.
+            Welcome, <?= $user["name"] ?>.
         </div>
 
         <div style="margin-top: 10px">
-            <?= $student["email"] ?>
+            <?= $user["email"] ?>
         </div>
 
         <br>

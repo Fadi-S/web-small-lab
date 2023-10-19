@@ -28,7 +28,7 @@ class LoginController
         $password = $_POST["password"];
 
         $model = new Model;
-        $user = $model->execute("SELECT * from student where email=?", [$email])->fetch_array();
+        $user = $model->execute("SELECT * from user where email=?", [$email])->fetch_array();
 
         if(!$user || ! isset($user[0])) {
             return redirect("/login", 401)->setResponse([

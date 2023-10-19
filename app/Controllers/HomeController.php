@@ -12,7 +12,7 @@ class HomeController
         }
 
         return View::make("home", [
-            "student" => getStudent(),
+            "user" => getUser(),
             "title" => "Home",
         ]);
     }
