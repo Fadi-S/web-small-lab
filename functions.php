@@ -1,7 +1,7 @@
 <?php
 
 use App\Model;
-use App\Redirect;
+use App\Response;
 
 function isLoggedIn() : bool {
     return isset($_SESSION["id"]);
@@ -10,7 +10,7 @@ function isLoggedIn() : bool {
 
 function getUser()
 {
-    if(isset($_SESSION["user"]) && $_SESSION["user"] && $_SESSION["id"] == $_SESSION["user"]["id"]) {
+    if(isset($_SESSION["user"]) && $_SESSION["user"] && $_SESSION["id"] == $_SESSION["user"]["user_id"]) {
         return $_SESSION["user"];
     }
 
@@ -19,9 +19,9 @@ function getUser()
     return $_SESSION["user"] = $model->execute("Select * from user where user_id=?", [$_SESSION["id"]])->fetch_array(MYSQLI_ASSOC);
 }
 
-function redirect($url, $status=200) : Redirect
+function response($url, $status=200) : Response
 {
-    return Redirect::make($url, $status);
+    return Response::make($url, $status);
 }
 
 function logout($url=null) {
@@ -31,7 +31,7 @@ function logout($url=null) {
 
     $url ??= "/login";
 
-    return redirect($url);
+    return response($url);
 }
 
 function getResponse()

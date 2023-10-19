@@ -1,7 +1,7 @@
 <?php
 
 namespace App;
-class Redirect
+class Response
 {
     private function __construct(
         protected string $url, protected int $status, protected $response)

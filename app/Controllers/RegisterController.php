@@ -15,7 +15,7 @@ class RegisterController
 
     public function store() {
         if(! isset($_POST["email"]) || ! isset($_POST["password"]) || ! isset($_POST["name"])) {
-            return redirect("/register", 401)->setResponse([
+            return response("/register", 401)->setResponse([
                 "error" => "All fields required",
             ]);
         }
@@ -26,19 +26,19 @@ class RegisterController
         $email = $_POST["email"];
 
         if($name === "" || $password === "" || $email === "") {
-            return redirect("/register", 401)->setResponse([
+            return response("/register", 401)->setResponse([
                 "error" => "All fields required",
             ]);
         }
 
         if($password !== $confirmPassword) {
-            return redirect("/register", 401)->setResponse([
+            return response("/register", 401)->setResponse([
                 "error" => "Passwords do not match",
             ]);
         }
 
         if(preg_match("/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/", $email) !== 1) {
-            return redirect("/register", 401)->setResponse([
+            return response("/register", 401)->setResponse([
                 "error" => "Invalid email",
             ]);
         }
@@ -49,7 +49,7 @@ class RegisterController
         $model = new Model();
         $user = $model->execute("Select email from user where email=?", [$email])->fetch_column();
         if($user) {
-            return redirect("/register", 401)->setResponse([
+            return response("/register", 401)->setResponse([
                 "error" => "Email already exists",
             ]);
         }
@@ -60,6 +60,6 @@ class RegisterController
 
         $_SESSION["id"] = $model->execute("Select user_id from user where email=?", [$email])->fetch_column();
 
-        return redirect("/");
+        return response("/");
     }
 }

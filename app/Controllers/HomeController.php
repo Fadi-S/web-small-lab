@@ -8,7 +8,7 @@ class HomeController
 {
     public function index() {
         if(! isLoggedIn()) {
-            return redirect("/login");
+            return response("/login");
         }
 
         return View::make("home", [

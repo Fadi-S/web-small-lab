@@ -1,6 +1,6 @@
 <?php
 
-use App\Redirect;
+use App\Response;
 use App\Route;
 
 require_once "vendor/autoload.php";
@@ -19,7 +19,7 @@ foreach (Route::routes() as $route) {
 
         $response = $route->handle(...$args);
 
-        if($response instanceof Redirect) {
+        if($response instanceof Response) {
             $response->handle();
         }
 

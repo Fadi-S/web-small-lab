@@ -19,7 +19,7 @@ class LoginController
 
     public function store() {
         if(! isset($_POST["email"]) || ! isset($_POST["password"])) {
-            return redirect("/login", 401)->setResponse([
+            return response("/login", 401)->setResponse([
                 "error" => "Email and Password are required",
             ]);
         }
@@ -31,19 +31,19 @@ class LoginController
         $user = $model->execute("SELECT * from user where email=?", [$email])->fetch_array();
 
         if(!$user || ! isset($user[0])) {
-            return redirect("/login", 401)->setResponse([
+            return response("/login", 401)->setResponse([
                 "error" => "Wrong Email or Password",
             ]);
         }
 
         if(! password_verify($password, $user["password"])) {
-            return redirect("/login", 401)->setResponse([
+            return response("/login", 401)->setResponse([
                 "error" => "Wrong Email or Password",
             ]);
         }
 
         $_SESSION["id"] = $user["user_id"];
 
-        return redirect("/");
+        return response("/");
     }
 }
