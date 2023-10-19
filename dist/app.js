@@ -33,12 +33,12 @@ function validateEmail(email) {
     return true;
 }
 
-function validatePassword(password, confirm_password, length=0) {
+function validatePassword(password, confirm_password=null, length=0) {
     if(password === null || password === "") {
         return "Password cannot be empty";
     }
 
-    if(password !== confirm_password) {
+    if(confirm_password !== null && password !== confirm_password) {
         return "Passwords do not match";
     }
 

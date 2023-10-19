@@ -16,7 +16,7 @@ function getUser()
 
     $model = new Model();
 
-    return $_SESSION["user"] = $model->execute("Select * from user where id=?", [$_SESSION["id"]])->fetch_array(MYSQLI_ASSOC);
+    return $_SESSION["user"] = $model->execute("Select * from user where user_id=?", [$_SESSION["id"]])->fetch_array(MYSQLI_ASSOC);
 }
 
 function redirect($url, $status=200) : Redirect

@@ -42,7 +42,7 @@ class LoginController
             ]);
         }
 
-        $_SESSION["id"] = $user["id"];
+        $_SESSION["id"] = $user["user_id"];
 
         return redirect("/");
     }

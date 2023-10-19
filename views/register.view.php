@@ -68,6 +68,7 @@
             form.append("name", name);
             form.append("email", email);
             form.append("password", password);
+            form.append("confirm_password", confirmPassword);
 
             submit("/register", form);
 

@@ -22,6 +22,7 @@ class RegisterController
 
         $name = $_POST["name"];
         $password = $_POST["password"];
+        $confirmPassword = $_POST["confirm_password"] ?? "";
         $email = $_POST["email"];
 
         if($name === "" || $password === "" || $email === "") {
@@ -29,6 +30,13 @@ class RegisterController
                 "error" => "All fields required",
             ]);
         }
+
+        if($password !== $confirmPassword) {
+            return redirect("/register", 401)->setResponse([
+                "error" => "Passwords do not match",
+            ]);
+        }
+
         if(preg_match("/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/", $email) !== 1) {
             return redirect("/register", 401)->setResponse([
                 "error" => "Invalid email",
@@ -50,7 +58,7 @@ class RegisterController
             $name, $email, $password,
         ]);
 
-        $_SESSION["id"] = $model->execute("Select id from user where email=?", [$email])->fetch_column();
+        $_SESSION["id"] = $model->execute("Select user_id from user where email=?", [$email])->fetch_column();
 
         return redirect("/");
     }
