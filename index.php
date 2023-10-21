@@ -3,17 +3,20 @@
 use App\Response;
 use App\Route;
 
+// I use composer auto-loading. `composer dump-autoload`
 require_once "vendor/autoload.php";
 
 $request_uri = $_SERVER['REQUEST_URI'];
 $method = $_SERVER['REQUEST_METHOD'];
 
+// Import all routes here from routes.php
 include "routes.php";
 session_start();
 
 $matched = false;
 
 foreach (Route::routes() as $route) {
+    // Fadi Sarwat - 7432
     $args = $route->is($request_uri, $method);
     if ($args !== false) {
 
@@ -34,4 +37,5 @@ if (!$matched) {
     echo "404 Not Found";
 }
 
+// Clear the response from session array after displaying it to the user.
 clearResponse();

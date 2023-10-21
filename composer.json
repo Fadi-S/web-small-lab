@@ -1,6 +1,6 @@
 {
-  "name": "vendor_name/lab1",
-  "description": "description",
+  "name": "fadi_s/lab1",
+  "description": "7432 - I created a small template to create very small php projects with no dependencies, require array is empty",
   "minimum-stability": "stable",
   "license": "proprietary",
   "authors": [

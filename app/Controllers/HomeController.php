@@ -16,4 +16,20 @@ class HomeController
             "title" => "Home",
         ]);
     }
+
+    public function show($id) {
+        if(! isLoggedIn()) {
+            return response("/login");
+        }
+
+        $user = getUserById($id);
+        if(! $user) {
+            return response("/404", 404);
+        }
+
+        return View::make("user", [
+            "user" => $user,
+            "title" => "User " . $user["name"],
+        ]);
+    }
 }

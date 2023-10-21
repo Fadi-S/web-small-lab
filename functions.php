@@ -19,6 +19,12 @@ function getUser()
     return $_SESSION["user"] = $model->execute("Select * from user where user_id=?", [$_SESSION["id"]])->fetch_array(MYSQLI_ASSOC);
 }
 
+function getUserById($id) {
+    $model = new Model();
+
+    return $model->execute("Select * from user where user_id=?", [$id])->fetch_array(MYSQLI_ASSOC);
+}
+
 function response($url, $status=200) : Response
 {
     return Response::make($url, $status);

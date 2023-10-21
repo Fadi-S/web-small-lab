@@ -29,6 +29,7 @@ class Route
 
     public function is($url, $method) : false|array
     {
+        // Matches the path with the url and can even extract dynamic parameters from the url.
         $matches = [];
         $match = preg_match("#^$this->path$#", $url, $matches);
         if(! $match || strtoupper($this->method) !== strtoupper($method)) {
