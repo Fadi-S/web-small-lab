@@ -1,5 +1,6 @@
 body {
     margin: 0;
+    font-family: 'Vazirmatn', sans-serif;
 }
 
 .container {
@@ -8,12 +9,15 @@ body {
     justify-content: center;
     height: 100%;
 }
+.space-y-3 > * + * {
+    margin-top: 0.75rem;
+}
 
 .card {
-    margin: auto;
     background-color: white;
-    padding: 1rem 2rem 1rem 2rem;
+    padding: 1rem;
     border-radius: 10px;
+    min-width: 365px;
 }
 
 .error-card {
@@ -32,36 +36,48 @@ body {
     display: flex;
     flex-direction: column;
     align-items: start;
+    width: 100%;
 }
 
 .label > span {
-    font-size: 15px;
-    font-weight: 700;
-    color: rgb(40, 40, 40);
+    font-size: 14px;
+    font-weight: 600;
+    color: rgb(55 65 81);
+}
+
+#form {
+    width: 100%;
 }
 
 input {
-    padding: 6px 5px 6px 5px;
-    border-radius: 5px;
-    border: #7f7f7f 1px solid;
-    font-size: 16px;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.5rem;
+    border: rgb(209, 213, 219) 1px solid;
     width: 100%;
+    appearance: none;
+    line-height: 1.5rem;
+    font-size: 1rem;
 }
 
 button {
     border: none;
-    padding: 10px 20px;
+    padding: 15px 20px;
     border-radius: 5px;
     background-color: #7496e6;
     color: white;
     transition: all;
     transition-duration: 200ms;
     cursor: pointer;
+    width: 100%;
 }
 
 button:hover {
     background-color: #446dcc;
 }
+
 button:focus {
-    background-color: #446dcc;
+    background-color: #356ae5;
 }

@@ -1,24 +1,24 @@
 
 <div class="container">
-    <div class="card" style="min-width: 340px;">
+    <div class="card" style="min-width: 365px;">
         <h1>Register</h1>
-        <form id="form" action="/register" method="POST">
+        <form id="form" class="space-y-3" action="/register" method="POST">
             <label class="label">
                 <span>Name</span>
                 <input id="name" name="name" type="text">
             </label>
 
-            <label class="label" style="margin-top: 10px;">
+            <label class="label">
                 <span>Email</span>
                 <input id="email" name="email" type="text">
             </label>
 
-            <label class="label" style="margin-top: 10px;">
+            <label class="label">
                 <span>Password</span>
                 <input id="password" name="password" type="password">
             </label>
 
-            <label class="label" style="margin-top: 10px;">
+            <label class="label">
                 <span>Confirm Password</span>
                 <input id="confirm_password" name="confirm_password" type="password">
             </label>

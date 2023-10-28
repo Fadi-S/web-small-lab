@@ -1,18 +1,19 @@
 
 <div class="container">
-    <div class="card" style="min-width: 340px;">
-        <h1>Login to System</h1>
+    <div class="card" >
+        <h1>Login</h1>
         <form
             id="form"
             action="/login"
             method="POST"
+            class="space-y-3"
             >
             <label class="label">
                 <span>Email</span>
                 <input id="email" name="email" type="email">
             </label>
 
-            <label class="label" style="margin-top: 15px;">
+            <label class="label">
                 <span>Password</span>
                 <input id="password" name="password" type="password">
             </label>
